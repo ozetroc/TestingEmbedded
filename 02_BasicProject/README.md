@@ -1,0 +1,1 @@
+## Example project for training purposes about testing of embedded devices
