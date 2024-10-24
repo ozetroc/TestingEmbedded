@@ -16,8 +16,22 @@
 
 #include "UtilDriver.h"
 
+bool isInitializedPM = false;
+
 uint8_t PowerManager_Init(void) {
+    if (isInitializedPM) {
+        printf("PowerManager already Initialized \r\n");
+        return _INIT_PM_FAIL;
+    }
+
     printf("PowerManager Initialized \r\n");
+    isInitializedPM = true;
+
+    return _INIT_PM_OK;
+}
+
+uint8_t PowerManager_Enable12V(void) {
+    UtilDriver_PWR(true);
 
     return 0;
 }
