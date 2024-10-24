@@ -1,0 +1,16 @@
+
+using sysbus
+$name?="nucleo_l432kc"
+mach create $name
+
+machine LoadPlatformDescription $ORIGIN/autogen.repl
+
+showAnalyzer usart2
+
+macro reset
+"""
+    sysbus LoadELF $bin
+    cpu0 VectorTableOffset `sysbus GetSymbolAddress "_vector_table"`
+"""
+
+runMacro $reset

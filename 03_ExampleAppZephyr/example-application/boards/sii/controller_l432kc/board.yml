@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: Apache-2.0
+
+board:
+  name: controller_l432kc
+  vendor: ingeekto
+  socs:
+    - name: stm32l432xx

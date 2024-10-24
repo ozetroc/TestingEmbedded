@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: Apache-2.0
+
+identifier: controller_l432kc
+name: ST Nucleo L432KC
+type: mcu
+arch: arm
+simulation: renode
+simulation_exec: renode
+toolchain:
+  - zephyr
+  - gnuarmemb
+  - xtools
+ram: 64
+flash: 256
+supported:
+  - nvs
+  - pwm
+  - can
+  - counter
+  - spi
+vendor: ingeekto

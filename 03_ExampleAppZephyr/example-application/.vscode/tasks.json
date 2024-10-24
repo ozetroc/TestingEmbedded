@@ -1,0 +1,61 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "ls",
+			"type": "shell",
+			"command": "ls",
+			"args": ["build"]
+		},
+		{
+			"label": "Build & flash",
+			"type": "shell",
+			"command": "source ~/zephyrproject/.venv/bin/activate && west build -b controller_l432kc -s app && pyocd flash -t stm32l432kc -f 400000 -O connect_mode=under-reset build/zephyr/zephyr.hex",
+            "problemMatcher": []
+		},
+		{
+			"label": "justFlash",
+			"type": "shell",
+			"command": "source ~/zephyrproject/.venv/bin/activate && pyocd flash -t stm32l432kc -f 400000 -O connect_mode=under-reset build/zephyr/zephyr.hex",
+            "problemMatcher": []
+		},
+		{
+			"label": "justBuild",
+			"type": "shell",
+			"command": "source ~/zephyrproject/.venv/bin/activate && west build -b controller_l432kc -s app",
+            "problemMatcher": []
+		},
+		{
+			"label": "justBuildIntegr",
+			"type": "shell",
+			"command": "source ~/zephyrproject/.venv/bin/activate && west build -b controller_l432kc -s app_integr",
+            "problemMatcher": []
+		},
+		{
+			"label": "cleanBuild",
+			"type": "shell",
+			"command": "source ~/zephyrproject/.venv/bin/activate && west build -t pristine",
+            "problemMatcher": []
+		},
+		{
+			"label": "generateRepl",
+			"type": "shell",
+			"command": "source ~/zephyrproject/.venv/bin/activate && dts2repl build/zephyr/zephyr.dts --output autogen.repl",
+            "problemMatcher": []
+		},
+		{
+			"label": "runRenode",
+			"type": "shell",
+			"command": "source ~/zephyrproject/.venv/bin/activate && renode renode.resc",
+            "problemMatcher": []
+		},
+	],
+    "inputs": [
+        {
+            "id": "version",
+            "description": "version:",
+            "default": "2.0.0",
+            "type": "promptString"
+        },
+    ]
+}

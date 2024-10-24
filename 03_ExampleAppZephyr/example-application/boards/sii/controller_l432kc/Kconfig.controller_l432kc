@@ -1,0 +1,5 @@
+# Copyright (c) 2021 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+config BOARD_CONTROLLER_L432KC
+	select SOC_STM32L432XX

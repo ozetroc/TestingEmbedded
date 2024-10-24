@@ -1,0 +1,173 @@
+/*
+ * Copyright (c) 2017 Linaro Limited
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+#include <st/l4/stm32l432Xc.dtsi>
+#include <st/l4/stm32l432k(b-c)ux-pinctrl.dtsi>
+
+/ {
+	model = "Ingeekto Controller on STM32L432KC MCU";
+	compatible = "ingeekto,controller_l432kc";
+
+	chosen {
+		zephyr,console = &usart2;
+		zephyr,shell-uart = &usart2;
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,canbus = &can1;
+	};
+
+	leds: leds {
+		compatible = "gpio-leds";
+		green_led: led_0 {
+			gpios = <&gpiob 3 GPIO_ACTIVE_HIGH>;
+			label = "User LD3";
+		};
+	};
+
+	muxes: muxes {
+		compatible = "gpio-leds";
+		mux_S1: mux_s1 {
+			gpios = <&gpioa 8 GPIO_ACTIVE_HIGH>;
+			label = "Mux S1 pin";
+		};
+		mux_S2: mux_s2 {
+			gpios = <&gpioa 11 GPIO_ACTIVE_HIGH>;
+			label = "Mux S2 pin";
+		};
+		mux_S3: mux_s3 {
+			gpios = <&gpiob 5 GPIO_ACTIVE_HIGH>;
+			label = "Mux S3 pin";
+		};
+		mux_S4: mux_s4 {
+			gpios = <&gpioa 1 GPIO_ACTIVE_HIGH>;
+			label = "Mux S4 pin";
+		};
+		mux_EN1: mux_en1 {
+			gpios = <&gpioa 3 GPIO_ACTIVE_HIGH>;
+			label = "Mux1 EN pin";
+		};
+		mux_EN2: mux_en2 {
+			gpios = <&gpioa 4 GPIO_ACTIVE_HIGH>;
+			label = "Mux2 EN pin";
+		};
+		mux_COM: mux_com {
+			gpios = <&gpiob 1 GPIO_ACTIVE_HIGH>;
+			label = "Mux COM pin";
+		};
+	};
+
+	utils: utils {
+		compatible = "gpio-leds";
+		pwr_SW: pwr_sw {
+			gpios = <&gpioa 6 GPIO_ACTIVE_HIGH>;
+			label = "PWR switch";
+		};
+	};
+
+	aliases {
+		led0 = &green_led;
+		ctrlmuxs1 = &mux_S1;
+		ctrlmuxs2 = &mux_S2;
+		ctrlmuxs3 = &mux_S3;
+		ctrlmuxs4 = &mux_S4;
+		ctrlmuxen1 = &mux_EN1;
+		ctrlmuxen2 = &mux_EN2;
+		ctrlmuxcom = &mux_COM;
+		pwrsw = &pwr_SW;
+	};
+};
+
+&clk_lsi {
+	status = "okay";
+};
+
+&clk_hsi {
+	status = "okay";
+};
+
+&pll {
+	div-m = <1>;
+	mul-n = <20>;
+	div-p = <7>;
+	div-q = <2>;
+	div-r = <4>;
+	clocks = <&clk_hsi>;
+	status = "okay";
+};
+
+&rcc {
+	clocks = <&pll>;
+	clock-frequency = <DT_FREQ_M(80)>;
+	ahb-prescaler = <1>;
+	apb1-prescaler = <1>;
+	apb2-prescaler = <1>;
+};
+
+&usart1 {
+	pinctrl-0 = <&usart1_tx_pa9 &usart1_rx_pa10>;
+	pinctrl-names = "default";
+	current-speed = <115200>;
+};
+
+&usart2 {
+	pinctrl-0 = <&usart2_tx_pa2 &usart2_rx_pa15>;
+	pinctrl-names = "default";
+	current-speed = <115200>;
+	status = "okay";
+};
+
+&spi1 {
+	pinctrl-0 = <&spi1_nss_pa4 &spi1_sck_pa5
+		     &spi1_miso_pa6 &spi1_mosi_pa7>;
+	pinctrl-names = "default";
+	status = "okay";
+};
+
+&i2c1 {
+	pinctrl-0 = <&i2c1_scl_pb6 &i2c1_sda_pb7>;
+	pinctrl-names = "default";
+	clock-frequency = <I2C_BITRATE_FAST>;
+	status = "okay";
+};
+
+&timers2 {
+	status = "okay";
+
+	pwm2: pwm {
+		status = "okay";
+		pinctrl-0 = <&tim2_ch1_pa0>;
+		pinctrl-names = "default";
+	};
+};
+
+&can1 {
+	pinctrl-0 = <&can1_rx_pa11 &can1_tx_pa12>;
+	pinctrl-names = "default";
+	status = "okay";
+};
+
+&rtc {
+	clocks = <&rcc STM32_CLOCK_BUS_APB1 0x10000000>,
+		 <&rcc STM32_SRC_LSI RTC_SEL(2)>;
+	status = "okay";
+};
+
+&flash0 {
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		/*
+		 * Reserve the final 16 KiB for file system partition
+		 */
+		storage_partition: partition@3c000 {
+			label = "storage";
+			reg = <0x0003c000 DT_SIZE_K(16)>;
+		};
+	};
+};

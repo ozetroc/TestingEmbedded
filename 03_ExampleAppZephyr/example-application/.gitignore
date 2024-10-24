@@ -1,0 +1,24 @@
+# editors
+*.swp
+*~
+
+# python
+.venv
+
+# build
+/build*
+/twister-out*
+/test1.*
+/test2.*
+/shell_module-renode.log*
+shell_module-asciinema
+shell_module-profile
+tests/robot_tests/logs/*
+tests/robot_tests/snapshots/*
+tests/robot_tests/twister-out*/
+tests/robot_tests/*.html
+
+__pycache__/
+
+# docs
+/doc/_build*

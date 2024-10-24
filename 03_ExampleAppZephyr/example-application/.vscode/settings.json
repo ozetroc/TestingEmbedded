@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "utildriver.h": "c",
+        "lockerdriver.h": "c",
+        "lockerstatusreader.h": "c",
+        "stdio.h": "c",
+        "app_version.h": "c"
+    }
+}
