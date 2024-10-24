@@ -21,6 +21,9 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#define _INIT_PM_OK    0
+#define _INIT_PM_FAIL  1
+
 /**
  * @brief   Initialize PowerManager module
  * @details This function does not enable main 12V power
@@ -28,3 +31,10 @@
  * @retval uint8_t 0 on success, error code otherwise
  */
 uint8_t PowerManager_Init(void);
+
+/**
+ * @brief Enable main 12V supply
+ * 
+ * @retval uint8_t 0 on success, error code otherwise
+ */
+uint8_t PowerManager_Enable12V(void);
