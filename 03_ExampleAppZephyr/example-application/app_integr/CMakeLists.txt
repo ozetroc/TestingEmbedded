@@ -9,4 +9,4 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
 project(app LANGUAGES C)
 
-target_sources(app PRIVATE src/main.c src/MuxDriver.c src/UtilDriver.c src/LockerDriver.c src/LockerStatusReader.c)
+target_sources(app PRIVATE src/main.c ./../modules/MuxDriver.c ./../modules/UtilDriver.c ./../modules/LockerStatusReader.c ./../modules/LockerDriver.c)

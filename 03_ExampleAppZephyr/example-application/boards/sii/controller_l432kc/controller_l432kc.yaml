@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 identifier: controller_l432kc
-name: ST Nucleo L432KC
+name: Locker controller based on STM32L432KC
 type: mcu
 arch: arm
 simulation: renode
@@ -18,4 +18,4 @@ supported:
   - can
   - counter
   - spi
-vendor: ingeekto
+vendor: sii

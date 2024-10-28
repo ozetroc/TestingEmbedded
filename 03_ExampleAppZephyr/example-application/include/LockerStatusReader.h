@@ -16,7 +16,7 @@
 #include <stdint.h>
 
 /** Max control time of the locker in [ms] */
-#define LCKR_STATUS_RDR_PERIOD 200
+#define LCKR_STATUS_RDR_PERIOD 100
 
 /**
  * @brief   Initialize LockerStatusReader module

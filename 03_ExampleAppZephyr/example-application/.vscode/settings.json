@@ -4,6 +4,7 @@
         "lockerdriver.h": "c",
         "lockerstatusreader.h": "c",
         "stdio.h": "c",
-        "app_version.h": "c"
+        "app_version.h": "c",
+        "cstdlib": "c"
     }
 }

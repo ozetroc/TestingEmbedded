@@ -1,6 +1,7 @@
 # editors
 *.swp
 *~
+*.save
 
 # python
 .venv

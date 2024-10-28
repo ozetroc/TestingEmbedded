@@ -7,7 +7,6 @@
  * 
  * 1.0) All mux pins should be set correctly during initialization of the module
  * 
- * 
  * 1.1) Module should not be initialized multiple times
  * 
  * 1.2) Only one locker should be opened at once
@@ -38,13 +37,15 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-/** Number of lockers to be handled by the module */
-#define NO_OF_LOCKERS 24
+#define NUMBER_OF_LOCKERS 24
 
-/** Max control time of the locker in [ms] */
-#define MAX_CONTROL_TIME_MS 2000
+#define MAX_CONTROL_TIME 2000
+#define MIN_CONTROL_TIME 500
+#define LCKR_DRIVER_PERIOD 300
 
-#define LCKR_DRIVER_PERIOD 200
+#define _INIT_LD_OK    0
+#define _INIT_LD_FAIL  1
+#define _LD_ERROR   2
 
 /**
  * @brief   Initialize LockerDriver module
@@ -54,38 +55,23 @@
 uint8_t LockerDriver_Init(void);
 
 /**
- * @brief Main loop to control working of LockerDriver
- *
+ * @brief Deinitialize
+ * 
+ * @return uint8_t 
  */
-void LockerDriver_Loop(void);
+uint8_t LockerDriver_DeInit(void);
+
 
 /**
- * @brief Non-blocking API for opening specified locker
- *
- * @param LockerNum Number of the locker to be opened
- * @return uint8_t Success (0) or error number
+ * @brief Open specific locker
+ * 
+ * @param LockerNum 
+ * @return uint8_t 
  */
 uint8_t LockerDriver_OpenLocker(uint8_t LockerNum);
 
 /**
- * @brief Blocking API for opening specified locker
- *
- * @param LockerNum Number of the locker to be opened
- * @return uint8_t Success (0) or error number
+ * @brief Main loop of locker driver
+ * 
  */
-uint8_t LockerDriver_OpenLockerBlocking(uint8_t LockerNum);
-
-/**
- * @brief Open all lockers in a sequence
- *
- * @return uint8_t Success (0) or error number
- * (1) - Invalid argument
- * (2) - Control already in progress
- */
-uint8_t LockerDriver_OpenAllLockers(void);
-
-/**
- * @brief Immidately disable all opening sequences and outputs
- *
- */
-void LockerDriver_DisableAllOutputs(void);
+void LockerDriver_Loop(void);
