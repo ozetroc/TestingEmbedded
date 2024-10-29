@@ -28,7 +28,7 @@ jobs:
           west build -b controller_l432kc -s app
 
       - name: Archive firmware
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: firmware
           path: 03_ExampleAppZephyr/example-application/build/zephyr/zephyr.*
