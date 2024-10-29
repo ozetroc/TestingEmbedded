@@ -26,3 +26,4 @@ __pycache__/
 /doc/_build*
 
 !modules/
+!zephyr/

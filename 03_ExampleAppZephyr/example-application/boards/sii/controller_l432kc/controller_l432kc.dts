@@ -9,8 +9,8 @@
 #include <st/l4/stm32l432k(b-c)ux-pinctrl.dtsi>
 
 / {
-	model = "Ingeekto Controller on STM32L432KC MCU";
-	compatible = "ingeekto,controller_l432kc";
+	model = "Sii Controller on STM32L432KC MCU";
+	compatible = "sii,controller_l432kc";
 
 	chosen {
 		zephyr,console = &usart2;
