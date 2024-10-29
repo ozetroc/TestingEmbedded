@@ -15,12 +15,11 @@ jobs:
           path: 03_ExampleAppZephyr/example-application
 
       - name: Initialize
-        working-directory: ./03_ExampleAppZephyr/example-application
+        working-directory: ./03_ExampleAppZephyr/
         run: |
           pip3 install -U west
-          west init -l .
           west update
-          pip3 install -r ../zephyr/scripts/requirements-base.txt
+          pip3 install -r ./zephyr/scripts/requirements-base.txt
 
       - name: Build firmware
         working-directory: ./03_ExampleAppZephyr/example-application
