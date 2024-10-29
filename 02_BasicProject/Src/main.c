@@ -109,13 +109,16 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  PowerManager_Enable12V();
   HAL_Delay(1000);
+  LockerDriver_OpenLocker(6);
   while (1)
   {
 	  HAL_GPIO_TogglePin(EXT_LED_GPIO_Port, EXT_LED_Pin);
     printf("Toggle \r\n");
     
-	  HAL_Delay(500);
+	  HAL_Delay(200);
+    LockerDriver_Loop();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

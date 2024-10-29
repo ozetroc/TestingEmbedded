@@ -37,9 +37,39 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#define NUMBER_OF_LOCKERS 24
+
+#define MAX_CONTROL_TIME 2000
+
+#define _INIT_LD_OK    0
+#define _INIT_LD_FAIL  1
+#define _LD_ERROR   2
+
 /**
  * @brief   Initialize LockerDriver module
  *
  * @retval  0 on success, error code otherwise
  */
 uint8_t LockerDriver_Init(void);
+
+/**
+ * @brief Deinitialize
+ * 
+ * @return uint8_t 
+ */
+uint8_t LockerDriver_DeInit(void);
+
+
+/**
+ * @brief Open specific locker
+ * 
+ * @param LockerNum 
+ * @return uint8_t 
+ */
+uint8_t LockerDriver_OpenLocker(uint8_t LockerNum);
+
+/**
+ * @brief Main loop of locker driver
+ * 
+ */
+void LockerDriver_Loop(void);
