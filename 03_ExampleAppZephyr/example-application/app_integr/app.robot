@@ -1,13 +1,13 @@
 *** Variables ***
 Resource                      ${KEYWORDS}
 ${PROMPT}                     uart:~$
-${RESC2}                      @/home/embedded/EmbeddedTesting/TestingEmbedded/03_ExampleAppZephyr/example-application/boards/sii/controller_l432kc/support/renode.resc
+${RESC2}                      ../example-application/boards/sii/controller_l432kc/support/renode.resc
 ${UART2}                      sysbus.usart2
 
 *** Keywords ***
 Prepare Machine
     Execute Command           $bin = ${ELF}
-    Execute Command           include ${RESC2}
+    Execute Command           include ${RESC}${RESC2} 
     Create Terminal Tester    ${UART2}
 
 *** Test Cases ***

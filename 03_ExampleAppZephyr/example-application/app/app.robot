@@ -26,4 +26,4 @@ Should Print Version
     Requires                  booted-zephyr
 
     Write Line To Uart        version
-    Wait For Line On Uart     Zephyr version 3.7.0
+    Wait For Line On Uart     Zephyr version

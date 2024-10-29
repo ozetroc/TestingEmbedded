@@ -32,9 +32,21 @@
             "problemMatcher": []
 		},
 		{
+			"label": "runTwisterIntegr",
+			"type": "shell",
+			"command": "source ~/zephyrproject/.venv/bin/activate && west twister --platform controller_l432kc -T app_integr/",
+            "problemMatcher": []
+		},
+		{
 			"label": "cleanBuild",
 			"type": "shell",
 			"command": "source ~/zephyrproject/.venv/bin/activate && west build -t pristine",
+            "problemMatcher": []
+		},
+		{
+			"label": "cleanTwisterFolders",
+			"type": "shell",
+			"command": "rm -rd twister-out.*/",
             "problemMatcher": []
 		},
 		{
