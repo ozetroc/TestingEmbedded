@@ -18,6 +18,7 @@ jobs:
         working-directory: ./03_ExampleAppZephyr/
         run: |
           pip3 install -U west
+          west init -l ./example-application
           west update
           pip3 install -r ./zephyr/scripts/requirements-base.txt
 
