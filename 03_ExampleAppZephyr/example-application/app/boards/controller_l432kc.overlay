@@ -25,3 +25,14 @@
 &gpioc {
 	status = "okay";
 };
+
+&usart1 {
+	status = "okay";
+
+	modbus0 {
+		compatible = "zephyr,modbus-serial";
+		label = "MODBUS0";
+		status = "okay";
+		de-gpios = <&gpioa 12 GPIO_ACTIVE_HIGH>;	/* D2 */
+	};
+};

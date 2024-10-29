@@ -15,6 +15,7 @@
 #include "UtilDriver.h"
 #include "LockerDriver.h"
 #include "LockerStatusReader.h"
+#include "ModbusSlave.h"
 
 LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
 
@@ -44,20 +45,26 @@ int main(void)
 	if (ret < 0) {
 		LOG_ERR("Could not turn off LED (%d)", ret);
 		return 0;
-	}
+	}	
+	// Sleep for 2s and wait for initialization of main loops of LockerDriver and LockerStatusReader
+	k_sleep(K_MSEC(2000));
 
 	printk("Use the sensor to change LED blinking period\n");
+
+	ModbusSlave_Init();
 
 	UtilDriver_Init();
 	MuxDriver_Init();
 
 	UtilDriver_PWR(true);
 
-	LockerStatusReader_Init();
-	LockerDriver_Init();
+	// LockerStatusReader_Init();
+	LockerDriver_Init();	
 
 	// LockerDriver_OpenLockerBlocking(1);
-	LockerDriver_OpenLocker(6);
+	// LockerDriver_OpenLocker(6);
+
+	LOG_INF("Hello World");
 
 	blink_set_period_ms(blink, BLINK_PERIOD_MS_MAX);
 	while (1) {
