@@ -2,6 +2,7 @@
 *.swp
 *~
 *.save
+*.log
 
 # python
 .venv
